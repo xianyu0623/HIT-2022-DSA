@@ -1,0 +1,17 @@
+# ninja log v5
+1	351	6851865480612275	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+354	533	6851865482552404	staticlinklist.exe	56535b6fe9743967
+3	286	6851865937114744	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+287	464	6851865938809915	staticlinklist.exe	56535b6fe9743967
+2	340	6851866845148822	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+341	503	6851866846708823	staticlinklist.exe	56535b6fe9743967
+3	360	6851868220190551	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+361	558	6851868221860646	staticlinklist.exe	56535b6fe9743967
+3	404	6857016368417052	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+405	580	6857016370326960	staticlinklist.exe	56535b6fe9743967
+2	369	6857016541343209	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+369	573	6857016543049095	staticlinklist.exe	56535b6fe9743967
+3	343	6857017031398012	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+344	522	6857017033113677	staticlinklist.exe	56535b6fe9743967
+3	353	6857017177320548	CMakeFiles/staticlinklist.dir/main.cpp.obj	b88aa68c880fcc4
+353	526	6857017178980484	staticlinklist.exe	56535b6fe9743967
