@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <vector>
 #include <stack>
+#include <algorithm>
 using namespace std;
 node* new_node(int num){
     node* nn = (node*)malloc(sizeof(node));
@@ -13,10 +14,18 @@ node* new_node(int num){
     nn -> left = nullptr;
     nn -> right = nullptr;
 }
+void print_order(vector<int> &order){
+    for(int i = 0 ; i < order.size(); i++){
+        cout << order[i] << ',';
+    }
+    puts("");
+}
 Tree add_data(Tree T, int num){
+    //如果树为空，直接创建根节点
     if(!T){
         return new_node(num);
     }
+    //如果树不为空，找到合适的位置插入
     else if(!(T -> left && T -> right)){
         if(!T -> left){
             T -> left = new_node(num);
@@ -27,6 +36,7 @@ Tree add_data(Tree T, int num){
             return T;
         }
     }
+    //如果左右子树都不为空，递归调用,使用随机数是为了让树更加平衡
     else{
         int r;
         r = rand() % 2;
@@ -76,15 +86,44 @@ void in_order(Tree T, vector<int> &order){
     if(!T){
         return;
     }
-    pre_order(T -> left, order);
+    in_order(T -> left, order);
     order.push_back(T -> data);
-    pre_order(T -> right, order);
+    in_order(T -> right, order);
 }
 void non_recursive_in_order(Tree T, vector<int> &order){
     stack<node*> stk;
     node* p = T;
+    while(p != nullptr||!stk.empty()){
+        if(p != nullptr){
+            stk.push(p);
+            p = p -> left;
+        }
+        else{
+            p = stk.top();
+            stk.pop();
+            order.push_back(p -> data);
+            p = p -> right;
+        }
+    }
+}
+void post_order(Tree T, vector<int> &order){
+    if(!T){
+        return;
+    }
+    post_order(T -> left, order);
+    post_order(T -> right, order);
+    order.push_back(T -> data);
+}
+void non_recursive_post_order(Tree T, vector<int> &order){
+    stack<node*> stk;
+    node* p = T;
     stk.push(p);
     while(!stk.empty()){
-
+        p = stk.top();
+        stk.pop();
+        order.push_back(p -> data);
+        if(p -> left) stk.push(p -> left);
+        if(p -> right) stk.push(p -> right);
     }
+    reverse(order.begin(), order.end());
 }
