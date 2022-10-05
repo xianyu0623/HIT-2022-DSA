@@ -180,7 +180,10 @@ void non_recursive_search_paths(){
 
 void print_path(){
     cout << "根据迷宫的构造特点，起点为2，按照递增顺序即为路径" << endl;
-
+    if (cnt == 0){
+        cout << "无解" << endl;
+        return;
+    }
     //寻找最短
     int min = 100000;
     int min_index = 0;
@@ -216,6 +219,8 @@ void print_path(){
         maze[x][y] = num;
         num++;
     }
+    maze[m][n] = num;
+    print_maze();
 }
 
 
