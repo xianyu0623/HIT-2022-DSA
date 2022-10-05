@@ -100,12 +100,16 @@ void recursive_search_path(int i, int j) {
     }
     if (maze[i][j] == 0 && !st[i][j]) {
         st[i][j] = true;//标记为已经走过
-        //向着四个方向延伸
+        //向着八个方向延伸
         push(way, {i, j});
         recursive_search_path(i + 1, j);
         recursive_search_path(i - 1, j);
         recursive_search_path(i, j + 1);
         recursive_search_path(i, j - 1);
+        recursive_search_path(i + 1, j + 1);
+        recursive_search_path(i + 1, j - 1);
+        recursive_search_path(i - 1, j + 1);
+        recursive_search_path(i - 1, j - 1);
         //状态恢复
         pop(way);
         st[i][j] = false;
@@ -138,6 +142,7 @@ void non_recursive_search_paths(){
         st[i][j] = true;
         push(way, {i, j});
         int num = size_of_stk(work);
+        //探索八个方向
         if(maze[i - 1][j] == 0 && !st[i - 1][j]){
             push(work, {i - 1, j});
         }
@@ -153,7 +158,18 @@ void non_recursive_search_paths(){
         if(maze[i][j + 1] == 0 && !st[i][j + 1]){
             push(work, {i, j + 1});
         }
-
+        if(maze[i - 1][j - 1] == 0 && !st[i - 1][j - 1]){
+            push(work, {i - 1, j - 1});
+        }
+        if(maze[i - 1][j + 1] == 0 && !st[i - 1][j + 1]){
+            push(work, {i - 1, j + 1});
+        }
+        if(maze[i + 1][j - 1] == 0 && !st[i + 1][j - 1]){
+            push(work, {i + 1, j - 1});
+        }
+        if(maze[i + 1][j + 1] == 0 && !st[i + 1][j + 1]){
+            push(work, {i + 1, j + 1});
+        }
         if(num == size_of_stk(work)){
             st[i][j] = false;
             pop(way);
@@ -164,9 +180,17 @@ void non_recursive_search_paths(){
 
 void print_path(){
     cout << "根据迷宫的构造特点，起点为2，按照递增顺序即为路径" << endl;
+
+    //寻找最短
+    int min = 100000;
+    int min_index = 0;
     //遍历paths,将对应位置替换2,3,4....
     for(int i = 0 ; i < cnt ; i ++){
         int num = 2;
+        if(paths[i].size() < min){
+            min = paths[i].size();
+            min_index = i;
+        }
         for(int j = 0 ; j < paths[i].size() ; j ++){
             int x = paths[i][j].first;
             int y = paths[i][j].second;
@@ -182,6 +206,15 @@ void print_path(){
             }
         }
         cout << endl;
+    }
+    //输出最短路径
+    cout << "最短路径为" << endl;
+    int num = 2;
+    for(int j = 0 ; j < paths[min_index].size() ; j ++){
+        int x = paths[min_index][j].first;
+        int y = paths[min_index][j].second;
+        maze[x][y] = num;
+        num++;
     }
 }
 
