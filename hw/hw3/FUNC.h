@@ -17,6 +17,10 @@ void non_recursive_in_order(Tree T, vector<int> &order);
 void post_order(Tree T, vector<int> &order);
 void non_recursive_post_order(Tree T, vector<int> &order);
 void print_order(vector<int> &order);
+void layer_order(Tree T, vector<int> &order);
+bool if_full_binary_tree(Tree T);
+int width_of_tree(Tree T);
 //传入函数指针，实现不同的遍历方式
 void traverse(Tree T, vector<int> &order, void (*func)(Tree, vector<int> &));
+
 #endif //HW3_FUNC_H
