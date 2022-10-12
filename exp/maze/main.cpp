@@ -146,15 +146,12 @@ void non_recursive_search_paths(){
         if(maze[i - 1][j] == 0 && !st[i - 1][j]){
             push(work, {i - 1, j});
         }
-
         if(maze[i][j - 1] == 0 && !st[i][j - 1]){
             push(work, {i, j - 1});
         }
-
         if(maze[i + 1][j] == 0 && !st[i + 1][j]){
             push(work, {i + 1, j});
         }
-
         if(maze[i][j + 1] == 0 && !st[i][j + 1]){
             push(work, {i, j + 1});
         }
@@ -222,7 +219,35 @@ void print_path(){
     maze[m][n] = num;
     print_maze();
 }
-
+//只打印最短路径
+void print_path2() {
+    cout << "根据迷宫的构造特点，起点为2，按照递增顺序即为路径" << endl;
+    if (cnt == 0) {
+        cout << "无解" << endl;
+        return;
+    }
+    //寻找最短
+    int min = 100000;
+    int min_index = 0;
+    //遍历paths,将对应位置替换2,3,4....
+    for (int i = 0; i < cnt; i++) {
+        if (paths[i].size() < min) {
+            min = paths[i].size();
+            min_index = i;
+        }
+    }
+    //输出最短路径
+    cout << "路径为" << endl;
+    int num = 2;
+    for (int j = 0; j < paths[min_index].size(); j++) {
+        int x = paths[min_index][j].first;
+        int y = paths[min_index][j].second;
+        maze[x][y] = num;
+        num++;
+    }
+    maze[m][n] = num;
+    print_maze();
+}
 
 int main() {
     memset(maze, -1, sizeof(maze));
@@ -240,9 +265,9 @@ int main() {
     }
     else{
         non_recursive_search_paths();
-        cout <<"找到的路径总数为："<< cnt << endl;
-        cout << "所有路径为：" << endl;
-        print_path();
+
+        cout << "路径为：" << endl;
+        print_path2();
     }
     return 0;
 }

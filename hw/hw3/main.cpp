@@ -5,7 +5,6 @@
 using namespace std;
 int main() {
     Tree T = nullptr;
-
     for(int i = 0 ; i < 10 ; i++){
         T = add_data(T, rand() % 20 + 1);
     }

@@ -28,7 +28,6 @@ Tree add_data(Tree T, int num){
     }
     //如果树不为空，找到合适的位置插入
     else if(!(T -> left && T -> right)){
-
         if(!T -> left){
             T -> left = new_node(num);
             return T;
@@ -37,6 +36,8 @@ Tree add_data(Tree T, int num){
             T -> right = new_node(num);
             return T;
         }
+
+
 
     }
     //如果左右子树都不为空，递归调用,使用随机数是为了让树更加平衡
