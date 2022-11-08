@@ -181,35 +181,35 @@ public:
     }
 
     //优先队列优化dijkstra算法
-    void Dijkstra_Priority_Queue(int s){
-        int n = this -> dim;
-        int dis[N];//记录起点到各个点的最短距离
-        int vis[N];//记录该点是否已经被访问过
-        memset(vis, 0, sizeof(vis));
-        for(int i = 1; i <= n; i++){
-            dis[i] = this -> MTX[s][i];
-        }
-        dis[s] = 0;
-        vis[s] = 1;
-        priority_queue<node> q;
-        q.push(node(s, 0));
-        while(!q.empty()){
-            node tmp = q.top();
-            q.pop();
-            int u = tmp.v;
-            if(vis[u]) continue;
-            vis[u] = 1;
-            for(int i = 1; i <= n; i++){
-                if(!vis[i] && dis[i] > dis[u] + this -> MTX[u][i]){
-                    dis[i] = dis[u] + this -> MTX[u][i];
-                    q.push(node(i, dis[i]));
-                }
-            }
-        }
-        for(int i = 1; i <= n; i++){
-            printf_s("V%d -> V%d: %d\n", s, i, dis[i]);
-        }
-    }
+//    void Dijkstra_Priority_Queue(int s){
+//        int n = this -> dim;
+//        int dis[N];//记录起点到各个点的最短距离
+//        int vis[N];//记录该点是否已经被访问过
+//        memset(vis, 0, sizeof(vis));
+//        for(int i = 1; i <= n; i++){
+//            dis[i] = this -> MTX[s][i];
+//        }
+//        dis[s] = 0;
+//        vis[s] = 1;
+//        priority_queue<node> q;
+//        q.push(node(s, 0));
+//        while(!q.empty()){
+//            node tmp = q.top();
+//            q.pop();
+//            int u = tmp.v;
+//            if(vis[u]) continue;
+//            vis[u] = 1;
+//            for(int i = 1; i <= n; i++){
+//                if(!vis[i] && dis[i] > dis[u] + this -> MTX[u][i]){
+//                    dis[i] = dis[u] + this -> MTX[u][i];
+//                    q.push(node(i, dis[i]));
+//                }
+//            }
+//        }
+//        for(int i = 1; i <= n; i++){
+//            printf_s("V%d -> V%d: %d\n", s, i, dis[i]);
+//        }
+//    }
 
 };
 int main() {
